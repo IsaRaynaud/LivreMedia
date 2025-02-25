@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load filters %}
+
+<h2>Liste des médias</h2>
+
+    <button>
+        <a href="{% url 'ajouter_media' %}">Ajouter un média</a>
+    </button>
+
+<!-- Messages de succès ou d'échec pour les emprunts et retours -->
+    {% for message in messages %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+    <ul>
+        {% for media in medias %}
+            <li>
+                <strong>Catégorie : </strong> {{ media.type }} <br>
+                <strong>Titre :</strong> {{ media.titre }} <br>
+                <strong>Auteur / Réalisateur : </strong> {{ media.auteur }} <br>
+                <strong>Disponible :</strong> {% if media.disponible %} Oui {% else %} Non {% endif %} <br>
+
+                <!-- Gestion des emprunts et retours -->
+                {% if media.disponible %}
+                    <a href="{% url 'emprunter_media' media.id %}">
+                        <button>Emprunter</button>
+                    </a>
+                {% else %}
+                    {% if media.id in emprunts_actifs %}
+                        {% with emprunt=emprunts_actifs|get_item:media.id %}
+                            <a href="{% url 'rendre_media' emprunt.id %}">
+                                <button>Rendre</button>
+                            </a>
+                        {% endwith %}
+                    {% endif %}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content='Site de la médiathèque «Notre livre, notre média»'>
+    <title>Médiathèqe "Notre livre, notre média"</title>
+    <!--Ajouter le link rel="stylesheet" pour le CSS-->
+</head>
+<body>
+    <header>
+        <h1>Notre livre, notre média</h1>
+        <nav>
+            <a href="{% url 'liste_membres' %}">Membres</a>
+            <a href="{% url 'liste_medias' %}">Médias</a>
+            <a href="{%url 'login' %}"><strong>Se connecter</strong></a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- Liens vers les pages juridiques (mentions légales, politique de confidentialité....) et adresse de la médiathèque à ajouter -->
+    </footer>
+</body>
+</html>

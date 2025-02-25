@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ajouter un Membre</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" placeholder="Nom" required>
+        <br>
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <br>
+        <label for="bibliothecaire">Est-ce un bibliothécaire ?</label>
+    <input type="checkbox" name="bibliothecaire" id="bibliothecaire">
+
+    <!-- Mot de passe, uniquement si bibliothécaire -->
+    <div id="mot_de_passe_div" style="display:none;">
+        <label for="mot_de_passe">Mot de passe :</label>
+        <input type="password" name="mot_de_passe" id="mot_de_passe">
+    </div>
+        <button type="submit">Ajouter</button>
+    </form>
+<script>
+    document.getElementById('bibliothecaire').addEventListener('change', function() {
+        var motDePasseDiv = document.getElementById('mot_de_passe_div');
+        if (this.checked) {
+            motDePasseDiv.style.display = 'block';
+        } else {
+            motDePasseDiv.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Emprunter le média : {{ media.titre }}</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    <label for="membre_id">ID du membre :</label>
+    <input type="number" name="membre_id" required>
+
+    <button type="submit">Emprunter</button>
+  </form>
+
+
+{% endblock %}

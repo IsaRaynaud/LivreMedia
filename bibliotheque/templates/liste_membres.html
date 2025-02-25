@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Liste des Membres</h2>
+    <button>
+        <a href="{% url 'ajouter_membre' %}">Ajouter un membre</a>
+    </button>
+    <ul>
+        {% for membre in membres %}
+            <li>
+                <strong>Nom :</strong> {{ membre.nom }} <br>
+                <strong>ID :</strong> {{ membre.id }} <br>
+                <strong>Email :</strong> {{ membre.email }} <br>
+                {% if membre.bloque %}
+                    <span style="color: red;">(3 emprunts en cours)</span>
+                {% endif %}
+                <br>
+                <a href="{% url 'maj_membre' membre.id %}">Modifier</a> <br>
+                <a href="{% url 'supprimer_membre' membre.id %}">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

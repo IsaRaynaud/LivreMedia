@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ajouter un média</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="type">Catégorie : </label>
+        <select id="type" name="type">
+            <option value="LIVRE">Livre</option>
+            <option value="CD">CD</option>
+            <option value="DVD">DVD</option>
+            <option value="JEU">Jeu de plateau</option>
+        </select>
+        <br>
+        <label for="titre">Titre :</label>
+        <input type="text" id="titre" name="titre" placeholder="titre" required>
+        <br>
+        <label for="nom">Auteur / Réalisateur :</label>
+        <input type="text" id="auteur" name="auteur" placeholder="Auteur / Réalisateur" required>
+        <br>
+        <button type="submit">Ajouter</button>
+    </form>
+{% endblock %}
